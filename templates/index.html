@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Дашборд Поставок</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background: #f4f4f9; }
+        h1 { color: #333; }
+        .card-container { display: flex; gap: 20px; flex-wrap: wrap; }
+        .card { 
+            background: white; padding: 20px; border-radius: 8px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); width: 250px;
+            border-left: 5px solid gray;
+        }
+        .card.critical { border-left-color: red; }
+        .card.warning { border-left-color: orange; }
+        .card.ok { border-left-color: green; }
+        
+        .item-name { font-size: 1.2em; font-weight: bold; margin-bottom: 10px; }
+        .stat { margin: 5px 0; color: #555; }
+        .status-badge { 
+            display: inline-block; padding: 5px 10px; 
+            border-radius: 4px; color: white; font-size: 0.8em; font-weight: bold;
+        }
+        .bg-critical { background: #d32f2f; }
+        .bg-warning { background: #f57c00; }
+        .bg-ok { background: #388e3c; }
+    </style>
+</head>
+<body>
+    <h1>🚗 Мониторинг поставок комплектующих</h1>
+    
+    <div class="card-container">
+        {% for item in inventory %}
+        <div class="card {{ item.status }}">
+            <div class="item-name">{{ item.name }}</div>
+            <div class="stat">На складе: <strong>{{ item.stock }}</strong> шт.</div>
+            <div class="stat">В пути: <strong>{{ item.incoming }}</strong> шт.</div>
+            <div class="stat">Мин. запас: {{ item.min_stock }} шт.</div>
+            <br>
+            <span class="status-badge bg-{{ item.status }}">
+                {{ item.status_text }}
+            </span>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
