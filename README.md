@@ -21,4 +21,4 @@
 - **Frontend:** HTML5, CSS3 (Grid/Flexbox), Chart.js (графики), FontAwesome (иконки).
 - **Архитектура:** REST API + Client-Side Rendering (AJAX/Fetch).
 
-## 📂 Структура проекта
+
